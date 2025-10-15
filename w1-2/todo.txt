@@ -3,4 +3,8 @@ Week 1
 
 Week 2
 - 前端：HTML/CSS 二栏布局、原生 JS 事件/DOM
+<<<<<<< HEAD
 - 前端：`index.html` + `post.html`（两栏布局，移动端可单栏）；`styles/main.css`、`scripts/main.js`；至少 **1 个可见交互**（返回顶部/折叠/主题切换)
+=======
+- 前端：`index.html` + `post.html`（两栏布局，移动端可单栏）；`styles/main.css`、`scripts/main.js`；至少 **1 个可见交互**（返回顶部/折叠/主题切换)
+>>>>>>> 96bd5ea (Move file to new directory)

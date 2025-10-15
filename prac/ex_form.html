@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>表单form Prac</title>
+</head>
+
+<body>
+    <!--
+    action：地址
+    method：POST（安全）GET（高效）
+    pattern：正则表达式 初级验证
+    -->
+
+    <form action="ex_iframe.html" method="POST">
+        <p>
+            <label for="n">昵称</label>
+            <input type="text" name="username" id="n" placeholder="输入你的名字" required>
+        </p>
+        <p>密码<input type="password" name="pwd"></p>
+
+        <p>性别
+            <select name="sex">
+                <option disabled>男</option>
+                <option selected>交</option>
+            </select>
+        </p>
+
+        <p>
+            <input type="submit" value="确认">
+            <input type="reset" value="重置">
+        </p>
+    </form>
+
+</body>
+
+</html>
