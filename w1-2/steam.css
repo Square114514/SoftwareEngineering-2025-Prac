@@ -4,7 +4,7 @@ body {
   background-color: #1b2838;
 }
 
-/* ¶¥²¿µ¼º½À¸ */
+/* é¡¶éƒ¨å¯¼èˆªæ  */
 #up {
   background-color: #171a21;
   height: 105px;
@@ -87,7 +87,7 @@ body {
   background-position: center;
 }
 
-/* Ğ¡À¶Ìõ */
+/* å°è“æ¡ */
 .nav2 {
   height: 32px;
   width: 900px;
@@ -180,7 +180,7 @@ hr {
   transition: all 0.3s ease;
 }
 
-/* ÒÆ¶¯¶ËÑùÊ½ */
+/* ç§»åŠ¨ç«¯æ ·å¼ */
 @media (max-width: 900px) {
   .hamburger {
     display: block;
@@ -258,7 +258,7 @@ hr {
     justify-content: center;
   }
 
-  /* ĞŞ¸Ä nav2 À¶ÌõÊúÅÅ²¼¾Ö */
+  /* ä¿®æ”¹ nav2 è“æ¡ç«–æ’å¸ƒå±€ */
   .nav2 {
     flex-direction: column;
     align-items: flex-start;
