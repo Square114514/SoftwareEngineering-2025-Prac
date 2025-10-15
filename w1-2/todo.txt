@@ -1,0 +1,6 @@
+Week 1
+- 前端：index.html 静态页（含标题、段落、图片、链接），应用简单 CSS 样式，排版美观。
+
+Week 2
+- 前端：HTML/CSS 二栏布局、原生 JS 事件/DOM
+- 前端：`index.html` + `post.html`（两栏布局，移动端可单栏）；`styles/main.css`、`scripts/main.js`；至少 **1 个可见交互**（返回顶部/折叠/主题切换)

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Week3 Login</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    #login {
+      font-family: "Segoe UI", sans-serif;
+      margin: 10px;
+      padding: 15px;
+      width: 300px;
+      border-radius: 3%;
+      border: none;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+
+<body>
+  <form id="login">
+    <legend>Log into your account</legend>
+
+    <div class="block">
+      <label for="email">Email</label>
+      <input type="text" id="email" required />
+      <div id="email-error" class="error"></div>
+    </div>
+
+    <div class="block">
+      <label for="pwd">Password</label>
+      <input type="password" id="pwd" required />
+      <div id="pwd-error" class="error"></div>
+    </div>
+
+    <button type="submit">Log in</button>
+
+    <div>
+      <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
+    </div>
+  </form>
+
+  <script>
+    const form = document.getElementById("login");
+    const email = document.getElementById("email");
+    const pwd = document.getElementById("pwd");
+    const emailErr = document.getElementById("email-error");
+    const pwdErr = document.getElementById("pwd-error");
+
+    function invalidEmail(a) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(a);
+    }
+
+    function invalidPwd(a) {
+      return a.length >= 8;
+    }
+
+    email.addEventListener("input", () => {
+      emailErr.textContent = invalidEmail(email.value) ? "" : "Invalid email format.";
+    });
+
+    pwd.addEventListener("input", () => {
+      pwdErr.textContent = invalidPwd(pwd.value) ? "" : "Password must be at least 8 characters.";
+    });
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const valid = invalidEmail(email.value) && invalidPwd(pwd.value);
+      if (valid) {
+        alert("Login successful!");
+      } else {
+        alert("Please check your input.");
+      }
+    });
+  </script>
+</body>
+
+</html>
