@@ -1,0 +1,300 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #1b2838;
+}
+
+/* 顶部导航栏 */
+#up {
+  background-color: #171a21;
+  height: 105px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.container {
+  width: 900px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.nav1 {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav1>li {
+  position: relative;
+}
+
+.nav1>li>a {
+  color: #c6d4df;
+  text-decoration: none;
+  font-weight: 450;
+  display: block;
+}
+
+.dropdown1 {
+  display: none;
+  position: absolute;
+  width: 80px;
+  background-color: #282d39;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.dropdown1 a {
+  display: block;
+  padding: 8px 15px;
+  color: lightgray;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.nav1>li:hover .dropdown1 {
+  display: block;
+}
+
+.dropdown1 a:hover {
+  color: black;
+  background-color: #c6d4df;
+}
+
+#mainreg img {
+  padding-right: 50px;
+  height: 44px;
+}
+
+#hamreg {
+  display: none;
+}
+
+#store {
+  color: #16a3e9;
+  text-decoration: underline 2px;
+}
+
+/* banner */
+#banner {
+  height: 450px;
+  background-image: url('https://store.cloudflare.steamstatic.com/public/images/v6/home/background_maincap.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+/* 小蓝条 */
+.nav2 {
+  height: 32px;
+  width: 900px;
+  align-items: center;
+  position: absolute;
+  display: flex;
+  list-style: none;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgb(38, 132, 179, 0.5);
+  font-size: 13px;
+}
+
+.nav2>li {
+  position: relative;
+  color: rgb(251, 242, 242);
+  padding: 7px 0;
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.nav2>li>a {
+  color: rgb(251, 242, 242);
+  text-decoration: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.dropdown2 {
+  display: none;
+  position: absolute;
+  min-width: 180px;
+  background: linear-gradient(rgba(81, 89, 108, 0.9), rgba(40, 45, 56, 0.9));
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.border {
+  margin: 8px 15px;
+}
+
+.dropdown2 a {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  display: block;
+  color: rgb(184, 184, 184);
+  font-size: 12px;
+  text-decoration: none;
+  padding: 5px 0 10px 0;
+}
+
+.droptitle {
+  color: #3fbcfa;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 10px 20px 10px 0;
+}
+
+.dropdown2 a:hover {
+  color: white;
+  text-decoration: underline 2px;
+}
+
+.nav2>li:hover {
+  background: linear-gradient(to right, #22a8eb, rgba(38, 132, 179, 0));
+}
+
+.nav2>li:hover .dropdown2 {
+  margin-top: 7px;
+  display: block;
+}
+
+hr {
+  height: 1px;
+  border: none;
+  background: linear-gradient(to right, gray, rgba(0, 0, 0, 0));
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+  padding: 15px;
+  position: absolute;
+  left: 20px;
+  z-index: 1001;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background-color: #c6d4df;
+  margin: 5px 0;
+  transition: all 0.3s ease;
+}
+
+/* 移动端样式 */
+@media (max-width: 900px) {
+  .hamburger {
+    display: block;
+  }
+
+  #up {
+    height: 65px;
+  }
+
+  #mainreg {
+    display: none;
+  }
+
+  #hamreg {
+    display: block;
+    list-style: none;
+  }
+
+  #hamreg a {
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: #c6d4df;
+    text-decoration: none;
+  }
+
+  .nav1 {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 250px;
+    height: 100vh;
+    background-color: #171a21;
+    flex-direction: column;
+    padding: 55px 0 0 20px;
+    transition: left 0.3s ease;
+    z-index: 1000;
+    align-items: normal;
+  }
+
+  .nav1.active {
+    left: 0;
+  }
+
+  .nav1.active>li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .nav1.active>li>a {
+    padding-bottom: 15px;
+  }
+
+  #store {
+    color: #c6d4df;
+    text-decoration: none;
+  }
+
+  .dropdown1 {
+    display: none;
+    position: static;
+    width: 100%;
+    margin-top: 5px;
+    background: rgba(19, 39, 58);
+  }
+
+  .dropdown1.active {
+    display: block;
+  }
+
+  .nav1.active>li:hover .dropdown1 {
+    display: none;
+  }
+
+  .container {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* 修改 nav2 蓝条竖排布局 */
+  .nav2 {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    position: static;
+    transform: none;
+    background-color: rgba(38, 132, 179, 0.9);
+    padding: 10px 20px;
+  }
+
+  .nav2>li {
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .nav2>li>a {
+    display: block;
+    width: 100%;
+  }
+
+  .dropdown2 {
+    position: static;
+    width: 100%;
+    margin-left: 0;
+    background: rgba(81, 89, 108, 0.9);
+    box-shadow: none;
+    display: none;
+  }
+
+  .dropdown2.active {
+    display: block;
+  }
+
+  .nav2>li:hover {
+    background: rgba(0, 0, 0, 0);
+  }
+
+}

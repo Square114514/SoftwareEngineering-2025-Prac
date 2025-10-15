@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>欢迎来到Steam</title>
+  <link rel="stylesheet" href="steam.css">
+</head>
+
+<body>
+  <nav id="up">
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="container">
+      <li id="hamreg"><a href="https://store.steampowered.com">STEAM&reg</a></li>
+      <ul class="nav1" id="mainNav">
+        <li id="mainreg"><a href="https://store.steampowered.com"><img
+              src="https://store.fastly.steamstatic.com/public/shared/images/header/logo_steam.svg?t=962016"></a>
+        </li>
+        <li><a id="store" href="https://store.steampowered.com" onclick="toggleDropdown(event)">商店</a>
+          <div class="dropdown1">
+            <a href="https://store.steampowered.com">主页</a>
+            <a href="#">探索队列</a>
+            <a href="#">愿望单</a>
+            <a href="#">点数商店</a>
+            <a href="#">新闻</a>
+            <a href="#">统计数据</a>
+          </div>
+        </li>
+        <li><a href="#" onclick="toggleDropdown(event)">社区</a>
+          <div class="dropdown1">
+            <a href="#">主页</a>
+            <a href="#">讨论</a>
+            <a href="#">创意工坊</a>
+            <a href="#">市场</a>
+            <a href="#">实况直播</a>
+          </div>
+        </li>
+        <li><a href="#">关于</a></li>
+        <li><a href="#">客服</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="banner">
+    <nav id="over">
+      <ul class="nav2">
+        <li><a href="https://store.steampowered.com" onclick="toggleNav2Dropdown(event)">&nbsp &nbsp 您的商店 &nbsp
+            &nbsp</a>
+          <div class="dropdown2">
+            <div class="border">
+              <a href="https://store.steampowered.com">主页</a>
+              <a href="#">社区推荐</a>
+              <a href="#">最近查看过</a>
+              <a href="#">Steam鉴赏家</a>
+            </div>
+          </div>
+        </li>
+        <li><a href="#" onclick="toggleNav2Dropdown(event)">&nbsp &nbsp 新鲜推荐 &nbsp &nbsp</a>
+          <div class="dropdown2">
+            <div class="border">
+              <div class="droptitle">最热门</div>
+              <a href="#">热销商品</a>
+              <a href="#">最常玩的游戏</a>
+              <hr>
+              <a href="#">新品</a>
+              <a href="#">即将推出</a>
+              <div class="droptitle">新闻与更新</div>
+              <a href="#">最近更新</a>
+            </div>
+          </div>
+        </li>
+        <li><a href="#">&nbsp &nbsp 类别 &nbsp &nbsp</a>
+          <div class="dropdown2">
+            <div class="border">
+              <div class="droptitle">特别栏目</div>
+              <a href="#">免费开玩</a>
+              <a href="#">试玩</a>
+              <a href="#">抢鲜体验</a>
+              <hr>
+              <a href="#">软件</a>
+              <a href="#">OST</a>
+              <div class="droptitle">玩家支持</div>
+              <a href="#">单人</a>
+              <a href="#">合作</a>
+            </div>
+          </div>
+        </li>
+        <li><a href="#">&nbsp &nbsp 点数商店 &nbsp &nbsp</a></li>
+        <li><a href="#">&nbsp &nbsp 新闻 &nbsp &nbsp</a></li>
+        <li><a href="#">&nbsp &nbsp 实验室 &nbsp &nbsp</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('mainNav');
+      nav.classList.toggle('active');
+      document.querySelector('.hamburger').classList.toggle('active');
+    }
+
+    function toggleDropdown(event) {
+      if (window.innerWidth <= 900) {
+        event.preventDefault();
+        const dropdown = event.target.nextElementSibling;
+        const allDropdowns = document.querySelectorAll('.dropdown1');
+        allDropdowns.forEach(item => {
+          if (item !== dropdown) item.style.display = 'none';
+        });
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+      }
+    }
+
+    function toggleNav2Dropdown(event) {
+      if (window.innerWidth <= 900) {
+        event.preventDefault();
+        const dropdown = event.target.nextElementSibling;
+        const allDropdowns = document.querySelectorAll('.nav2 .dropdown2');
+        allDropdowns.forEach(item => {
+          if (item !== dropdown) item.classList.remove('active');
+        });
+        dropdown.classList.toggle('active');
+      }
+    }
+
+    window.addEventListener('resize', () => {
+      const dropdowns = document.querySelectorAll('.dropdown1');
+      if (window.innerWidth > 900) {
+        dropdowns.forEach(drop => {
+          drop.style.display = '';
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
