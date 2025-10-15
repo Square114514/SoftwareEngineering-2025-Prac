@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Week3 Signup</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    #strength {
+      position: absolute;
+      height: 7px;
+      width: 94%;
+      color: transparent;
+    }
+
+    .weak {
+      width: 33.3%;
+      background-color: red;
+    }
+
+    .medium {
+      width: 66.7%;
+      background-color: orange;
+    }
+
+    .strong {
+      width: 100%;
+      background-color: green;
+    }
+
+    #avatar-preview {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-top: 10px;
+      display: none;
+    }
+
+    #result {
+      margin-top: 30px;
+      padding: 15px;
+      background: #f2f2f2;
+      border-radius: 8px;
+      display: none;
+    }
+
+    pre {
+      background: #fff;
+      border-radius: 8px;
+      padding: 12px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <form id="signup">
+    <legend>Create your account</legend>
+    <div class="block">
+      <label>Email<br></label>
+      <input type="text" id="email" required />
+      <div id="email-error" class="error"></div>
+    </div>
+
+    <div class="block">
+      <label>Password<br></label>
+      <input type="password" id="pwd" required /><br>
+      <div id="strength"></div>
+      <div id="pwd-error" class="error"></div>
+    </div>
+
+    <div class="block">
+      <label>Confirm password<br></label>
+      <input type="password" id="cpwd" required /><br>
+      <div id="cpwd-error" class="error"></div>
+    </div>
+
+    <div class="block">
+      <label>Name<br></label>
+      <input type="text" id="name" required /><br>
+      <div id="name-error" class="error"></div>
+    </div>
+
+    <div class="block">
+      <label>Avatar</label>
+      <input type="file" id="avatar" accept="image/*">
+      <img id="avatar-preview" />
+    </div>
+
+    <div class="block">
+      <input type="checkbox" id="agree" name="agree" required style="width:15px">
+      <label>我已阅读并同意条款</label>
+    </div>
+
+    <button type="submit">Sign up</button>
+
+    <div>
+      <p>Already have an account? <a href="login.html">Log in here</a></p>
+    </div>
+
+  </form>
+
+  <div id="result">
+    <h3>Data JSON:</h3>
+    <pre id="json-output"></pre>
+  </div>
+
+  <script>
+    const form = document.getElementById("signup");
+
+    const email = document.getElementById("email");
+    const pwd = document.getElementById("pwd");
+    const strength = document.getElementById("strength");
+    const cpwd = document.getElementById("cpwd");
+    const name = document.getElementById("name");
+    const avatar = document.getElementById("avatar");
+    const avatarPreview = document.getElementById("avatar-preview");
+    const resultBox = document.getElementById("result");
+    const jsonOutput = document.getElementById("json-output");
+
+    const emailerr = document.getElementById("email-error");
+    const pwderr = document.getElementById("pwd-error");
+    const cpwderr = document.getElementById("cpwd-error");
+    const nameerr = document.getElementById("name-error");
+
+    function invalidEmail(a) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(a);
+    }
+    function invalidPwd(a) {
+      return a.length >= 8 && /[A-Z]/.test(a);
+    }
+    function invalidConfirm(a, b) {
+      return a === b;
+    }
+    function invalidName(a) {
+      return a.length <= 15 && /^[a-zA-Z0-9_]+$/.test(a);
+    }
+
+    function strengththbar(a) {
+      strength.className = "";
+      if (!invalidPwd(a)) return;
+
+      let level = 1;
+      if (/[0-9]/.test(a)) level++;
+      if (/[a-z]/.test(a)) level++;
+      if (/[^A-Za-z0-9]/.test(a)) level++;
+
+      switch (level) {
+        case 1:
+          strength.classList.add("weak");
+          break;
+        case 2:
+        case 3:
+          strength.classList.add("medium");
+          break;
+        case 4:
+          strength.classList.add("strong");
+          break;
+        default:
+          break;
+      }
+    }
+
+    email.addEventListener("input", () => {
+      emailerr.textContent = invalidEmail(email.value) ? "" : "Email address invalid."
+    })
+    pwd.addEventListener("input", () => {
+      pwderr.innerHTML = invalidPwd(pwd.value) ? "" : "Password must be at least 8 characters <br>and include an uppercase letter.";
+      strengththbar(pwd.value);
+    })
+    cpwd.addEventListener("input", () => {
+      cpwderr.textContent = invalidConfirm(cpwd.value, pwd.value) ? "" : "Passwords do not match.";
+    })
+    name.addEventListener("input", () => {
+      nameerr.innerHTML = invalidName(name.value) ? "" : "Name can only contain letters,numbers,<br> and underscores.";
+    })
+
+    avatar.addEventListener("change", () => {
+      const file = avatar.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          avatarPreview.src = e.target.result;
+          avatarPreview.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // 提交验证 + JSON 展示
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const valid = invalidEmail(email.value) &&
+        invalidPwd(pwd.value) &&
+        invalidConfirm(cpwd.value, pwd.value) &&
+        invalidName(name.value);
+
+      if (valid) {
+        const data = {
+          email: email.value,
+          name: name.value,
+          password: pwd.value,
+          avatar: avatarPreview.src ? "[image preview below]" : null,
+          agree: document.getElementById("agree").checked,
+          createdAt: new Date().toISOString()
+        };
+
+        // 展示JSON数据
+        jsonOutput.textContent = JSON.stringify(data, null, 2);
+        resultBox.style.display = "block";
+
+        // 若有头像，则在 JSON 下方额外显示
+        if (avatarPreview.src) {
+          let preview = document.getElementById("result-avatar");
+          if (!preview) {
+            preview = document.createElement("img");
+            preview.id = "result-avatar";
+            preview.style.width = "100px";
+            preview.style.height = "100px";
+            preview.style.borderRadius = "50%";
+            preview.style.objectFit = "cover";
+            preview.style.display = "block";
+            preview.style.marginTop = "15px";
+            resultBox.appendChild(preview);
+          }
+          preview.src = avatarPreview.src;
+        }
+
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      } else {
+        alert("Please fix the errors before submitting.");
+      }
+    });
+  </script>
+</body>
+
+</html>
