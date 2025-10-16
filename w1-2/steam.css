@@ -4,11 +4,6 @@ body {
   background-color: #1b2838;
 }
 
-<<<<<<< HEAD
-/* é¡¶éƒ¨å¯¼èˆªæ  */
-=======
-/* ¶¥²¿µ¼º½À¸ */
->>>>>>> 96bd5ea (Move file to new directory)
 #up {
   background-color: #171a21;
   height: 105px;
@@ -91,11 +86,6 @@ body {
   background-position: center;
 }
 
-<<<<<<< HEAD
-/* å°è“æ¡ */
-=======
-/* Ð¡À¶Ìõ */
->>>>>>> 96bd5ea (Move file to new directory)
 .nav2 {
   height: 32px;
   width: 900px;
@@ -188,11 +178,6 @@ hr {
   transition: all 0.3s ease;
 }
 
-<<<<<<< HEAD
-/* ç§»åŠ¨ç«¯æ ·å¼ */
-=======
-/* ÒÆ¶¯¶ËÑùÊ½ */
->>>>>>> 96bd5ea (Move file to new directory)
 @media (max-width: 900px) {
   .hamburger {
     display: block;
@@ -270,11 +255,6 @@ hr {
     justify-content: center;
   }
 
-<<<<<<< HEAD
-  /* ä¿®æ”¹ nav2 è“æ¡ç«–æŽ’å¸ƒå±€ */
-=======
-  /* ÐÞ¸Ä nav2 À¶ÌõÊúÅÅ²¼¾Ö */
->>>>>>> 96bd5ea (Move file to new directory)
   .nav2 {
     flex-direction: column;
     align-items: flex-start;
@@ -312,9 +292,4 @@ hr {
   .nav2>li:hover {
     background: rgba(0, 0, 0, 0);
   }
-
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 96bd5ea (Move file to new directory)
